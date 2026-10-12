@@ -362,7 +362,7 @@ Juego.prototype.dibujarFichaArrastrada = function(ficha, x, y) {
     } else {
         ancho = this.anchoFicha * factor;
         alto = this.largoFicha * factor;
-        dx = Math.floor((this.largoFicha - this.anchoFicha) / 2) * factor;
+        dx = Math.floor((this.largoFicha - this.anchoFicha) / 2 - this.anchoFicha) * factor;
         dy = Math.floor((this.anchoFicha - this.largoFicha) / 2) * factor;
     }
 
