@@ -2,9 +2,10 @@ import { Tablero } from './tablero.js';
 import { Pozo } from './pozo.js';
 import { Jugador } from './jugador.js';
 import { Fraccion } from './ficha.js';
+import { FICHAS_POR_JUGADOR } from './config.js';
 
 export class Partida {
-    constructor(fichas_por_jugador = 6) {
+    constructor(fichas_por_jugador = FICHAS_POR_JUGADOR) {
         // Tablero
         this.tablero = new Tablero();
 

@@ -4,3 +4,6 @@ export const MARGEN_TABLERO = 50;
 
 export const CANT_CASILLAS = 30;
 export const CANT_CASILLAS_TOP = 7;
+
+export const ARCHIVO_CSV = 'fichas.csv';
+export const FICHAS_POR_JUGADOR = 6;

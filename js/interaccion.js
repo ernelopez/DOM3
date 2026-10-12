@@ -1,6 +1,6 @@
 // interaccion.js
 import { Juego } from './juego.js';
-import { LARGO_FICHA, ANCHO_FICHA, CANT_CASILLAS } from './config.js';
+import { LARGO_FICHA, ANCHO_FICHA, CANT_CASILLAS, ARCHIVO_CSV } from './config.js';
 
 // -------------------------------------------------
 // Conversión de coordenadas de pantalla a las del juego
@@ -518,7 +518,7 @@ Juego.prototype.iniciarMusica = function() {
 // -------------------------------------------------
 Juego.prototype.crearPartidaConNombres = async function() {
     this.partida = new (await import('./partida.js')).Partida(6);
-    await this.partida.pozo.cargar('fichas.csv');
+    await this.partida.pozo.cargar(ARCHIVO_CSV);
     this.partida.repartir_fichas();
 
     this.partida.jugadores[0].nombre = this.nombreJugador1;
@@ -541,7 +541,7 @@ Juego.prototype.crearPartidaConNombres = async function() {
 // -------------------------------------------------
 Juego.prototype.reiniciarPartida = async function() {
     this.partida = new (await import('./partida.js')).Partida(6);
-    await this.partida.pozo.cargar('fichas.csv');
+    await this.partida.pozo.cargar(ARCHIVO_CSV);
     this.partida.repartir_fichas();
 
     this.partida.jugadores[0].nombre = this.nombreJugador1;
