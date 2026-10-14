@@ -52,30 +52,56 @@ Juego.prototype.dibujarInputNombres = function() {
     const fuenteNormal = `${this.tamanoFuente}px Junegull`;
 
     // Título
-    dibujarTexto(ctx, "Dominó de fracciones y decimales", centroX, centroY - 450, fuenteTitulo, COLOR_TITULO, true);
+    dibujarTexto(ctx, "Dominó de fracciones y decimales",
+                 centroX, centroY - Math.floor(300 * this.escala),
+                 fuenteTitulo, COLOR_TITULO, true);
 
     // Subtítulo
-    dibujarTexto(ctx, "Ingresá los nombres de los jugadores", centroX, centroY - 300, fuenteInput, '#ffffff', true);
+    dibujarTexto(ctx, "Ingresá los nombres de los jugadores",
+                 centroX, centroY - Math.floor(200 * this.escala),
+                 fuenteInput, '#ffffff', true);
 
     // Etiquetas
-    dibujarTexto(ctx, "Jugador 1:", centroX - 350, centroY - 170, fuenteInput, COLOR_JUGADOR1);
-    dibujarTexto(ctx, "Jugador 2:", centroX - 350, centroY - 75, fuenteInput, COLOR_JUGADOR2);
+    dibujarTexto(ctx, "Jugador 1:",
+                 centroX - Math.floor(250 * this.escala),
+                 centroY - Math.floor(120 * this.escala),
+                 fuenteInput, COLOR_JUGADOR1);
+    dibujarTexto(ctx, "Jugador 2:",
+                 centroX - Math.floor(250 * this.escala),
+                 centroY - Math.floor(25 * this.escala),
+                 fuenteInput, COLOR_JUGADOR2);
 
     // Cajas de input
-    const rectJ1 = { x: centroX - 80, y: centroY - 210, w: 350, h: 80 };
-    const rectJ2 = { x: centroX - 80, y: centroY - 115, w: 350, h: 80 };
+    const rectJ1 = {
+        x: centroX - Math.floor(80 * this.escala),
+        y: centroY - Math.floor(160 * this.escala),
+        w: Math.floor(350 * this.escala),
+        h: Math.floor(80 * this.escala)
+    };
+    const rectJ2 = {
+        x: centroX - Math.floor(80 * this.escala),
+        y: centroY - Math.floor(65 * this.escala),
+        w: Math.floor(350 * this.escala),
+        h: Math.floor(80 * this.escala)
+    };
 
     // Caja J1
     ctx.strokeStyle = (this.ingresandoNombre === 1) ? '#c8c8c8' : '#505050';
     ctx.lineWidth = (this.ingresandoNombre === 1) ? 3 : 2;
     ctx.strokeRect(rectJ1.x, rectJ1.y, rectJ1.w, rectJ1.h);
-    dibujarTexto(ctx, this.nombreJugador1, rectJ1.x + 15, rectJ1.y + 40, fuenteInput, COLOR_JUGADOR1);
+    dibujarTexto(ctx, this.nombreJugador1,
+                 rectJ1.x + Math.floor(15 * this.escala),
+                 rectJ1.y + Math.floor(40 * this.escala),
+                 fuenteInput, COLOR_JUGADOR1);
 
     // Caja J2
     ctx.strokeStyle = (this.ingresandoNombre === 2) ? '#c8c8c8' : '#505050';
     ctx.lineWidth = (this.ingresandoNombre === 2) ? 3 : 2;
     ctx.strokeRect(rectJ2.x, rectJ2.y, rectJ2.w, rectJ2.h);
-    dibujarTexto(ctx, this.nombreJugador2, rectJ2.x + 15, rectJ2.y + 40, fuenteInput, COLOR_JUGADOR2);
+    dibujarTexto(ctx, this.nombreJugador2,
+                 rectJ2.x + Math.floor(15 * this.escala),
+                 rectJ2.y + Math.floor(40 * this.escala),
+                 fuenteInput, COLOR_JUGADOR2);
 
     // Cursor parpadeante
     const ahora = Date.now();
@@ -90,30 +116,35 @@ Juego.prototype.dibujarInputNombres = function() {
             ctx.strokeStyle = COLOR_JUGADOR1;
             ctx.lineWidth = 2;
             ctx.beginPath();
-            ctx.moveTo(rectJ1.x + 15 + anchoTexto + 2, rectJ1.y + 15);
-            ctx.lineTo(rectJ1.x + 15 + anchoTexto + 2, rectJ1.y + 65);
+            ctx.moveTo(rectJ1.x + Math.floor(15 * this.escala) + anchoTexto + 2,
+                       rectJ1.y + Math.floor(15 * this.escala));
+            ctx.lineTo(rectJ1.x + Math.floor(15 * this.escala) + anchoTexto + 2,
+                       rectJ1.y + Math.floor(65 * this.escala));
             ctx.stroke();
         } else if (this.ingresandoNombre === 2) {
             const anchoTexto = medirTexto(ctx, this.nombreJugador2, fuenteInput);
             ctx.strokeStyle = COLOR_JUGADOR2;
             ctx.lineWidth = 2;
             ctx.beginPath();
-            ctx.moveTo(rectJ2.x + 15 + anchoTexto + 2, rectJ2.y + 15);
-            ctx.lineTo(rectJ2.x + 15 + anchoTexto + 2, rectJ2.y + 65);
+            ctx.moveTo(rectJ2.x + Math.floor(15 * this.escala) + anchoTexto + 2,
+                       rectJ2.y + Math.floor(15 * this.escala));
+            ctx.lineTo(rectJ2.x + Math.floor(15 * this.escala) + anchoTexto + 2,
+                       rectJ2.y + Math.floor(65 * this.escala));
             ctx.stroke();
         }
     }
 
     // Instrucciones
     dibujarTexto(ctx, "Hacé clic en una caja para editarla. Presioná ENTER para comenzar.",
-                 centroX, centroY + 30, fuenteInput, '#c8c8c8', true);
+                 centroX, centroY + Math.floor(80 * this.escala),
+                 fuenteInput, '#c8c8c8', true);
 
     // Logo BAA
     if (this.imgBaa) {
         const escalaBaa = 0.5 * this.escala;
         const anchoBaa = Math.floor(this.imgBaa.width * escalaBaa);
         const altoBaa = Math.floor(this.imgBaa.height * escalaBaa);
-        const yImagenes = this.altoPantalla - Math.floor(400 * this.escala);
+        const yImagenes = this.altoPantalla - Math.floor(380 * this.escala);
         ctx.drawImage(this.imgBaa, centroX - anchoBaa / 2, yImagenes + altoBaa + 10, anchoBaa, altoBaa);
     }
 };

@@ -463,7 +463,11 @@ Juego.prototype.limpiarEstadoArrastre = function() {
 Juego.prototype.verificarYMostrarFinPartida = function() {
     if (this.partida.terminada) {
         if (this.partida.ganador) {
-            this.reproducirSonido(this.sonidoWin);
+            //this.reproducirSonido(this.sonidoWin);
+            clearTimeout(this.timeoutSonidoWin); // por si había uno pendiente
+            this.timeoutSonidoWin = setTimeout(() => {
+                this.reproducirSonido(this.sonidoWin);
+            }, 1000);
         }
         this.actualizarBotones();
         return true;
